@@ -1,0 +1,32 @@
+{
+  "name": "front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "secretlint": "secretlint --maskSecrets --secretlintifnore .gitignore '**/*'",
+    "prettier-check": "prettier --cache -chack",
+    "prettier-fix": "prettier --cache --write"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@secretlint/secretlint-rule-preset-recommend": "^8.2.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "secretlint": "^8.2.4",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
