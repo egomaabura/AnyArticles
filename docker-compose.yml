@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  front:
+    build:
+      context: ./front/
+    container_name: any-articles-front
+    tty: true
+    volumes:
+      - .:/front
+    command: sh -c "npm run start"
+    ports:
+      - "12000:3000"
+
+  back:
+    build: ./back/
+    container_name: any-articles-back
+    tty: true
+    env_file:
+      - .env
+    volumes:
+      - .:/back
+    command: sh -c "python3 manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      mydb:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  mydb:
+    image: mysql:8.0.20
+    container_name: my-db
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: 'Asia/Tokyo'
+    healthcheck:
+      test: "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD"
+      timeout: 5s
+      interval: 5s
+      retries: 10
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  db_data:

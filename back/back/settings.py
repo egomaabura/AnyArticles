@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '*',
-    '.vercel.app'
 ]
 
 
@@ -81,6 +80,12 @@ WSGI_APPLICATION = 'back.wsgi.application'
 
 DATABASES = {
     "default": {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
+        'HOST': 'my-db', # docker-compose.ymlで指定したサービス名(コンテナ名)
+        'PORT': 3306,
     }
 }
 
