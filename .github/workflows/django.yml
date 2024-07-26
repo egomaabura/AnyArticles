@@ -27,4 +27,4 @@ jobs:
         pip install -r ./back/requirements.txt
     - name: Run Tests
       run: |
-        python ./back/manage.py test
+        python back/manage.py test
