@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': os.environ.get('MYSQL_DATABASE'),
         'USER': os.environ.get('MYSQL_USER'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
-        'HOST': 'my-db', # docker-compose.ymlで指定したサービス名(コンテナ名)
+        'HOST': os.environ.get('MYSQL_HOST'),
         'PORT': 3306,
     }
 }

@@ -20,18 +20,16 @@ services:
       - .env
     volumes:
       - .:/back
-    command: sh -c "python3 manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python3 manage.py runserver 0.0.0.0:13000"
     depends_on:
       mydb:
         condition: service_healthy
     ports:
-      - "8000:8000"
+      - "13000:13000"
 
   mydb:
     image: mysql:8.0.20
     container_name: my-db
-    env_file:
-      - .env
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -47,7 +45,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 3307:3306
 
 volumes:
   db_data:
