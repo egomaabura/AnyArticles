@@ -6,16 +6,10 @@ on:
       - main
       - develop
       - feature/**
-    paths: 
-      - ./github.workflows/django.yml
-      - ./back/**
-  # pull_request:
-  #   branches: 
-  #     - main
-  #     - develop
-  #   paths: 
-  #     - ./github.workflows/django.yml
-  #     - ./back/**
+  pull_request:
+    branches: 
+      - main
+      - develop
 
 jobs:
   build:
