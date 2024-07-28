@@ -6,14 +6,12 @@ on:
       - main
       - develop
     paths:
-      - "./github.workflows/back.yml"
       - "./back"
   pull_request:
     branches:
       - main
       - develop
     paths:
-      - "./github.workflows/back.yml"
       - "./back"
 
 jobs:
