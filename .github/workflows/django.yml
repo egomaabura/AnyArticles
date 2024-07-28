@@ -2,11 +2,19 @@ name: Django CI
 
 on:
   push:
-    branches: [ "main", "develop" ]
-    paths: [ "./github.workflows/django.yml", "./back/" ]
+    branches: 
+      - main
+      - develop
+    paths: 
+      - ./github.workflows/django.yml
+      - ./back/**
   pull_request:
-    branches: [ "main", "develop" ]
-    paths: [ "./github.workflows/django.yml", "./back/" ]
+    branches: 
+      - main
+      - develop
+    paths: 
+      - ./github.workflows/django.yml
+      - ./back/**
 
 jobs:
   build:
