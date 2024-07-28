@@ -76,7 +76,7 @@ jobs:
       - name: Install dependencies
         run: cd ./front && npm install
       - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        run: cd ./front && ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
