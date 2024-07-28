@@ -1,18 +1,21 @@
+from typing import Any
 from django.contrib import admin
+from django_boost.admin import LogicalDeletionModelAdmin
 from .models import User
 
 
-class UserAdmin(admin.ModelAdmin):
+@admin.register(User)
+class UserAdmin(LogicalDeletionModelAdmin):
     list_display = (
         "name",
         "mail",
-        "user_id",
+        "id",
         "deleted_at",
     )
     search_fields = (
         "name",
         "mail",
-        "user_id",
+        "id",
     )
     list_per_page = 30
     ordering = (
@@ -20,9 +23,7 @@ class UserAdmin(admin.ModelAdmin):
         "updated_at"
     )
     exclude = (
-        "user_id",
+        "id",
         "created_at",
         "updated_at",
     )
-
-admin.site.register(User, UserAdmin)
