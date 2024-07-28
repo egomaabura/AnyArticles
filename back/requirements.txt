@@ -4,3 +4,4 @@ django-boost
 Pillow
 mysqlclient
 pymysql
+cryptography
