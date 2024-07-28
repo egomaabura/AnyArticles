@@ -1,4 +1,4 @@
-name: CI
+name: backend CI
 
 on:
   push:
@@ -6,30 +6,40 @@ on:
       - main
       - develop
     paths:
+      - "./github.workflows/back.yml"
       - "./back"
   pull_request:
     branches:
       - main
       - develop
     paths:
+      - "./github.workflows/back.yml"
       - "./back"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["pypy3.9", "pypy3.10", "3.9", "3.10", "3.11", "3.12"]
     defaults:
       run:
         working-directory: "./back"
     steps:
-      - uses: actions/checkout@v3
-      - name: Set Up Python
-        uses: actions/setup-python@v3
+      - uses: actions/checkout@v4
+      - name: Set Up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
-      - name: Install Dependencies
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
           pip install -r requirements.txt
+      - name: Lint with Ruff
+        run: |
+          pip install ruff
+          ruff check --output-format=github .
+        continue-on-error: true
       - name: Run Tests
         run: |
           python manage.py test
