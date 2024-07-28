@@ -7,7 +7,7 @@ services:
     container_name: any-articles-front
     tty: true
     volumes:
-      - .:/front
+      - ./front:/workspace/front
     command: sh -c "npm run start"
     ports:
       - "12000:3000"
@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/back
+      - ./back:/workspace/back
     command: sh -c "python3 manage.py runserver 0.0.0.0:13000"
     depends_on:
       mydb:
