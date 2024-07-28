@@ -6,6 +6,9 @@ on:
       - main
       - develop
       - feature/**
+    paths:
+      - "back/**"
+      - ".github/workflows/back.yml"
   pull_request:
     branches: 
       - main
